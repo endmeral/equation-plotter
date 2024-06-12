@@ -1,0 +1,93 @@
+<mat-grid-list cols="8" rowHeight="91vh" >
+
+  <mat-grid-tile colspan="5" class="graph">
+    <app-graph></app-graph>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="3" class="add">
+    <mat-card class="container-card">
+      <mat-card-header>
+        <mat-toolbar>
+          Options
+        </mat-toolbar>
+      </mat-card-header>
+      <mat-divider/>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab label="Add"> 
+            <mat-card>
+              <mat-card-header>
+                Add an Equation
+              </mat-card-header>
+              <mat-card-content>
+                <form [formGroup]="equationForm" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field style="width: 100%;">
+                        <mat-label>Select Equation Type</mat-label>
+                        <mat-select formControlName="equationType">
+                          @for(type of equationTypes; track type.value){
+                            <mat-option [value]="type.value">{{type.value | titlecase }}</mat-option>
+                          }
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col">
+                      <mat-form-field style="width: 100%;">
+                        <mat-label>Select Graph Type</mat-label>
+                        <mat-select formControlName="graphType">
+                          @for(type of graphTypes; track type.value){
+                            <mat-option [value]="type.value">{{type.value | titlecase }}</mat-option>
+                          }
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    @if(equationForm.value.equationType === 'linear'){
+                      <mat-form-field class="example-full-width" floatLabel="always">
+                        <mat-label>Enter equation</mat-label>
+                        <input formControlName="fn" matInput matInput placeholder="x * x" >
+                        <span matTextPrefix>y = &nbsp;</span>
+                      </mat-form-field>
+                    }
+                    @if(equationForm.value.equationType === 'parametric'){
+                      <mat-form-field floatLabel="always">
+                        <mat-label>Enter x equation</mat-label>
+                        <input formControlName="x" matInput placeholder="t * cos(t)" >
+                        <span matTextPrefix>y = &nbsp;</span>
+                      </mat-form-field>
+                      <mat-form-field floatLabel="always">
+                        <mat-label>Enter y equation</mat-label>
+                        <input formControlName="y" matInput placeholder="t * sin(t)" >
+                        <span matTextPrefix>x = &nbsp;</span>
+                      </mat-form-field>
+                      }
+                      @if(equationForm.value.equationType === 'polar'){
+                      <mat-form-field floatLabel="always">
+                        <mat-label>Enter equation</mat-label>
+                        <input formControlName="polar" matInput placeholder="2 * cos(theta)" >
+                        <span matTextPrefix>r = &nbsp;</span>
+                      </mat-form-field>
+                      }
+                  </div>
+                </form>
+              </mat-card-content>
+              <mat-card-actions style="display: flex; flex-direction: row-reverse;">
+                  <button mat-fab type="submit" color="primary" 
+                  aria-label="Submit form and display equation">
+                    <mat-icon>add</mat-icon>
+                  </button>
+              </mat-card-actions>
+            </mat-card>
+            
+          </mat-tab>
+          <mat-tab label="Edit">
+            <app-edit-table></app-edit-table>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>      
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
