@@ -1,4 +1,7 @@
-<mat-card>
+<mat-card >
+  <div #test>
+
+  </div>
     <mat-card-header>
         <mat-card-title>
             What is Equation Plotter?
@@ -12,6 +15,7 @@
 
 <mat-card>
     <section>
+        <p>Height of prev mat-card {{test.offsetHeight}}</p>
         <div class="example-label">Basic</div>
         <div class="example-button-row">
           <button mat-button>Basic</button>

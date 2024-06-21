@@ -16,7 +16,7 @@ export const routes: Routes = [
         title: "Library"
     },
     { 
-        path: 'library/:url_link', 
+        path: 'library/:id', 
         component: EquationComponent,
         title: "Details"
     },

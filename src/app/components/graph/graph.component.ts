@@ -1,7 +1,8 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild } from '@angular/core';
 import functionPlot from 'function-plot';
 import { HostListener } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { After } from 'node:v8';
 
 @Component({
   selector: 'app-graph',
@@ -12,39 +13,64 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class GraphComponent implements AfterViewInit{
 
+  @ViewChild('hello', { static: true }) hello!: ElementRef<HTMLDivElement>;
+
   gridEnabled = true;
   @HostListener("window:resize", ["$event"])
   onResize(event: Event): void {
     // Call the function here when the window is resized
     this.plotGraph();
   }
+
+  constructor(private elementRef: ElementRef) {
+    console.log(elementRef.nativeElement.querySelector("#function-plot-container"));
+  }
+  
   plotGraph() {
 
-    const container = document.querySelector(
-      "#function-plot-container",
-    ) as HTMLElement;
+    const test = this.elementRef.nativeElement;
+    const container = this.hello.nativeElement;
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
 
-    const containerWidth = container.offsetWidth;
-
-    // Calculate the height as 0.6 of the width
-    const height = containerWidth * 0.6;
-
-
-    functionPlot({
-      target: '#function-plot-container',
-      width: container.offsetWidth,
-      height: container.offsetHeight,
-      grid: this.gridEnabled,
-      data: [
-        {
-          fn: 'x^2',
-          derivative: {
-            fn: '2*x',
-            updateOnMouseMove: true
+    // this check is done because when the page initially renders navigator doesn't exist
+    // probably an easier fix somehow but idk how
+    if (typeof navigator !== 'undefined') {
+      functionPlot({
+        target: container,
+        width: containerWidth,
+        height:containerHeight,
+        grid: this.gridEnabled,
+        data: [
+          {
+            fn: 'x^2',
+            derivative: {
+              fn: '2*x',
+              updateOnMouseMove: true
+            }
           }
-        }
-      ]
-    })
+        ]
+      });
+    } else {
+      console.warn('Initial plot with no navigator, skipping..');
+    }
+
+
+    // functionPlot({
+    //   target: container,
+    //   width: containerWidth,
+    //   height:containerHeight,
+    //   grid: this.gridEnabled,
+    //   data: [
+    //     // {
+    //     //   fn: 'x^2',
+    //     //   derivative: {
+    //     //     fn: '2*x',
+    //     //     updateOnMouseMove: true
+    //     //   }
+    //     // }
+    //   ]
+    // })
   }
 
   ngAfterViewInit(): void {

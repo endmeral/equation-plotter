@@ -24,45 +24,27 @@ const EXAMPLE_DATA: LibraryItem[] = [
     id: 2, 
     name: 'Butterfly 1', 
     equation: 'r(θ) = a * cos(nθ)',
-    description: '2 A mathematical curve characterized by its symmetric, petal-like pattern.'
+    description: 'Looks like the insect.'
   },
   {
     id: 3, 
     name: 'Butterfly 2', 
     equation: 'r(θ) = a * cos(nθ)',
-    description: '3 A mathematical curve characterized by its symmetric, petal-like pattern.'
+    description: 'Second Curve presented by Temple H Fay'
   },
   {
     id: 4, 
     name: 'Lissajous ', 
     equation: 'r(θ) = a * cos(nθ)',
-    description: '4 A mathematical curve characterized by its symmetric, petal-like pattern.'
+    description: 'Used to generate mesmerizing patterns in Vertigo by Hitchcock'
   },
   {
     id: 5, 
-    name: 'Polar rose', 
+    name: 'Normal Distribution', 
     equation: 'r(θ) = a * cos(nθ)',
-    description: '5 A mathematical curve characterized by its symmetric, petal-like pattern.'
+    description: 'Curve that can be used for finaces'
   },
-  // {id: 2, name: 'Helium'},
-  // {id: 3, name: 'Lithium'},
-  // {id: 4, name: 'Beryllium'},
-  // {id: 5, name: 'Boron'},
-  // {id: 6, name: 'Carbon'},
-  // {id: 7, name: 'Nitrogen'},
-  // {id: 8, name: 'Oxygen'},
-  // {id: 9, name: 'Fluorine'},
-  // {id: 10, name: 'Neon'},
-  // {id: 11, name: 'Sodium'},
-  // {id: 12, name: 'Magnesium'},
-  // {id: 13, name: 'Aluminum'},
-  // {id: 14, name: 'Silicon'},
-  // {id: 15, name: 'Phosphorus'},
-  // {id: 16, name: 'Sulfur'},
-  // {id: 17, name: 'Chlorine'},
-  // {id: 18, name: 'Argon'},
-  // {id: 19, name: 'Potassium'},
-  // {id: 20, name: 'Calcium'},
+  
 ];
 
 /**
